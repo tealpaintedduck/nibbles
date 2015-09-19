@@ -1,0 +1,62 @@
+game
+  context
+  gameSpeed
+  cellSize
+  gridWidth
+  gridHeight
+  gameInPlay
+  gameLevel
+  pauseToggle
+  nibbler
+  food
+  walls
+  levels
+  tickIntervalId
+
+  start()
+    tickIntervalId = setInteval tickIfGameInPlay 100
+
+  tickIfGameInPlay()
+    if gameInPlay
+      tick()
+
+  tick()
+    updatePositions()
+    checkForGameOver()
+    speedUptIfNibblerEats()
+    drawAll()
+
+  updatePositions()
+    nibbler.move()
+
+  checkForGameOver()
+    if nibber.cannabalism || nibbler.hasCrashed(walls)
+      gameOver()
+
+  speedUptIfNibblerEats()
+    if nibbler.eatIfPossible(food)
+      speedUp()
+      food.nextCourse
+
+
+
+snake
+  snakeParts
+
+snakePart
+  x
+  y
+
+food
+  x
+  y
+
+walls
+  wallParts
+
+wallPart
+  x
+  y
+
+
+

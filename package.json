@@ -1,0 +1,22 @@
+{
+  "name": "nibbles",
+  "version": "1.0.0",
+  "description": "snake clone",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tealpaintedduck/nibbles.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tealpaintedduck/nibbles/issues"
+  },
+  "homepage": "https://github.com/tealpaintedduck/nibbles#readme",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}
