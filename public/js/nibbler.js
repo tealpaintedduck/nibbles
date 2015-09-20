@@ -19,17 +19,14 @@
   };
 
   Game.prototype.start = function() {
-    this.tickIntervalId = window.setInterval(this.createTickGameInPlayFunction(), this.gameSpeed);
+    this.tickIntervalId = window.setInterval(this.tickIfGameInPlay.bind(this), this.gameSpeed);
   };
 
 
-  Game.prototype.createTickGameInPlayFunction = function() {
-    var thisGame = this;
-    return function() {
-      if(thisGame.gameInPlay === true){
-        thisGame.tick();
-      }
-    };
+  Game.prototype.tickIfGameInPlay = function() {
+    if(this.gameInPlay === true){
+      this.tick();
+    }
   };
 
   Game.prototype.tick = function() {
@@ -154,39 +151,36 @@
 
 
 
-  Game.prototype.interpretKeyboard = function() {
-    var thisGame = this
-    return function(e) {
-      if(thisGame.gameInPlay){
-        switch(e.keyCode) {
-          case 40:
-          if(thisGame.nibbler.directionOfTravel !== "N") {
-            thisGame.nibbler.directionOfTravel = "S";
-          }
-          break;
-          case 37:
-          if(thisGame.nibbler.directionOfTravel !== "E") {
-            thisGame.nibbler.directionOfTravel = "W";
-          }
-          break;
-          case 38:
-          if(thisGame.nibbler.directionOfTravel !== "S") {
-            thisGame.nibbler.directionOfTravel = "N";
-          }
-          break;
-          case 39:
-          if(thisGame.nibbler.directionOfTravel !== "W") {
-            thisGame.nibbler.directionOfTravel = "E";
-          }
-          break;
-          case 32:
-          thisGame.pauseGame();
-          break;
+  Game.prototype.interpretKeyboard = function(e) {
+    if(this.gameInPlay){
+      switch(e.keyCode) {
+        case 40:
+        if(this.nibbler.directionOfTravel !== "N") {
+          this.nibbler.directionOfTravel = "S";
         }
-      } else {
-          thisGame.initialiseNewGame();
-          thisGame.start();
+        break;
+        case 37:
+        if(this.nibbler.directionOfTravel !== "E") {
+          this.nibbler.directionOfTravel = "W";
+        }
+        break;
+        case 38:
+        if(this.nibbler.directionOfTravel !== "S") {
+          this.nibbler.directionOfTravel = "N";
+        }
+        break;
+        case 39:
+        if(this.nibbler.directionOfTravel !== "W") {
+          this.nibbler.directionOfTravel = "E";
+        }
+        break;
+        case 32:
+        this.pauseGame();
+        break;
       }
+    } else {
+        this.initialiseNewGame();
+        this.start();
     }
   }
 
@@ -195,7 +189,7 @@
       this.gameSpeed -= 35
       console.log(this.gameSpeed)
       this.tickIntervalId = window.clearInterval(this.tickIntervalId)
-      this.tickIntervalId = window.setInterval(this.createTickGameInPlayFunction(), this.gameSpeed)
+      this.tickIntervalId = window.setInterval(this.tickIfGameInPlay.bind(this), this.gameSpeed)
     }
   }
 
@@ -210,7 +204,7 @@
       this.tickIntervalId = window.clearInterval(this.tickIntervalId)
       this.pauseToggle = true
     } else if(this.pauseToggle && this.gameInPlay === true) {
-      this.tickIntervalId = window.setInterval(this.createTickGameInPlayFunction(), this.gameSpeed)
+      this.tickIntervalId = window.setInterval(this.tickIfGameInPlay.bind(this), this.gameSpeed)
       this.pauseToggle = false
     }
   }
@@ -249,6 +243,6 @@ window.onload = function() {
   var canvas = document.getElementById('gameBoard');
   var ctx = canvas.getContext("2d");
   var game = new Game(canvas, ctx);
-  window.addEventListener("keydown", game.interpretKeyboard(), false);
+  window.addEventListener("keydown", game.interpretKeyboard.bind(game), false);
   game.start();
 }
