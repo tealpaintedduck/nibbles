@@ -20,16 +20,16 @@ Food.prototype.nextCourse = function(increaseFoodNumber, snake, walls) {
   if(increaseFoodNumber) {
     this.number++
   }
-  this.x = (randomX(0,20) * this.cellSize);
-  this.y = (randomX(0,20) * this.cellSize);
+  this.x = (randomX(0,60) * this.cellSize);
+  this.y = (randomX(0,35) * this.cellSize);
   for (var i = snake.bodyParts.length - 1; i >= 0; i--) {
     if(snake.bodyParts[i][0] === this.x && snake.bodyParts[i][1] === this.y) {
-      this.nextCourse(false);
+      this.nextCourse(false, snake, walls);
     }
   };
   for (var i = walls.length - 1; i >= 0; i--) {
     if(walls[i][0] === this.x && walls[i][1] === this.y) {
-      this.nextCourse(false);
+      this.nextCourse(false, snake, walls);
     }
   };
 }

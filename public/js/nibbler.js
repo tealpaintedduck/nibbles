@@ -20,6 +20,231 @@ function Game(canvas, context) {
     startCoord: [(this.cellSize * 8), (this.cellSize * 16)],
     totalLength: (this.cellSize * 45)
   }]
+  this.levelLayouts[4] = [
+    {
+      axisDirection: "v",
+      startCoord: [(this.cellSize * 15), 0],
+      totalLength: this.cellSize * 18
+    },
+    {
+      axisDirection: "v",
+      startCoord: [this.cellSize * 45, this.cellSize * 16],
+      totalLength: this.cellSize * 18
+    },
+    {
+      axisDirection: "h",
+      startCoord: [0, this.cellSize * 26],
+      totalLength: this.cellSize * 27
+    },
+    {
+      axisDirection: "h",
+      startCoord: [this.cellSize * 32, this.cellSize * 8],
+      totalLength: this.cellSize * 27
+    }
+  ]
+  this.levelLayouts[5] = [
+    {
+      axisDirection: "v",
+      startCoord: [this.cellSize * 15, this.cellSize * 9],
+      totalLength: this.cellSize * 18
+    },
+    {
+      axisDirection: "v",
+      startCoord: [this.cellSize * 45, this.cellSize * 9],
+      totalLength: this.cellSize * 18
+    },
+    {
+      axisDirection: "h",
+      startCoord: [this.cellSize * 17, this.cellSize * 7],
+      totalLength: this.cellSize * 27
+    },
+    {
+      axisDirection: "h",
+      startCoord: [this.cellSize * 17, this.cellSize * 29],
+      totalLength: this.cellSize * 27
+    }
+  ]
+  this.levelLayouts[6] = [
+    {
+      axisDirection: "v",
+      startCoord: [this.cellSize * 10, 0],
+      totalLength: this.cellSize * 13
+    },
+    {
+      axisDirection: "v",
+      startCoord: [this.cellSize * 10, this.cellSize * 21],
+      totalLength: this.cellSize * 13
+    },
+    {
+      axisDirection: "v",
+      startCoord: [this.cellSize * 20, 0],
+      totalLength: this.cellSize * 13
+    },
+    {
+      axisDirection: "v",
+      startCoord: [this.cellSize * 20, this.cellSize * 21],
+      totalLength: this.cellSize * 13
+    },
+    {
+      axisDirection: "v",
+      startCoord: [this.cellSize * 30, 0],
+      totalLength: this.cellSize * 13
+    },
+    {
+      axisDirection: "v",
+      startCoord: [this.cellSize * 30, this.cellSize * 21],
+      totalLength: this.cellSize * 13
+    },
+    {
+      axisDirection: "v",
+      startCoord: [this.cellSize * 40, 0],
+      totalLength: this.cellSize * 13
+    },
+    {
+      axisDirection: "v",
+      startCoord: [this.cellSize * 40, this.cellSize * 21],
+      totalLength: this.cellSize * 13
+    },
+    {
+      axisDirection: "v",
+      startCoord: [this.cellSize * 50, 0],
+      totalLength: this.cellSize * 13
+    },
+    {
+      axisDirection: "v",
+      startCoord: [this.cellSize * 50, this.cellSize * 21],
+      totalLength: this.cellSize * 13
+    }
+  ]
+  this.levelLayouts[7] = [
+    {
+      axisDirection: "v",
+      startCoord: [this.cellSize * 30, 0],
+      totalLength: this.cellSize
+    },
+    {
+      axisDirection: "v",
+      startCoord: [this.cellSize * 30, this.cellSize * 2],
+      totalLength: this.cellSize
+    },
+    {
+      axisDirection: "v",
+      startCoord: [this.cellSize * 30, this.cellSize * 4],
+      totalLength: this.cellSize
+    },
+    {
+      axisDirection: "v",
+      startCoord: [this.cellSize * 30, this.cellSize * 6],
+      totalLength: this.cellSize
+    },
+    {
+      axisDirection: "v",
+      startCoord: [this.cellSize * 30, this.cellSize * 8],
+      totalLength: this.cellSize
+    },
+    {
+      axisDirection: "v",
+      startCoord: [this.cellSize * 30, this.cellSize * 10],
+      totalLength: this.cellSize
+    },
+    {
+      axisDirection: "v",
+      startCoord: [this.cellSize * 30, this.cellSize * 12],
+      totalLength: this.cellSize
+    },
+    {
+      axisDirection: "v",
+      startCoord: [this.cellSize * 30, this.cellSize * 14],
+      totalLength: this.cellSize
+    },
+    {
+      axisDirection: "v",
+      startCoord: [this.cellSize * 30, this.cellSize * 16],
+      totalLength: this.cellSize
+    },
+    {
+      axisDirection: "v",
+      startCoord: [this.cellSize * 30, this.cellSize * 18],
+      totalLength: this.cellSize
+    },
+    {
+      axisDirection: "v",
+      startCoord: [this.cellSize * 30, this.cellSize * 20],
+      totalLength: this.cellSize
+    },
+    {
+      axisDirection: "v",
+      startCoord: [this.cellSize * 30, this.cellSize * 22],
+      totalLength: this.cellSize
+    },
+    {
+      axisDirection: "v",
+      startCoord: [this.cellSize * 30, this.cellSize * 24],
+      totalLength: this.cellSize
+    },
+    {
+      axisDirection: "v",
+      startCoord: [this.cellSize * 30, this.cellSize * 26],
+      totalLength: this.cellSize
+    },
+    {
+      axisDirection: "v",
+      startCoord: [this.cellSize * 30, this.cellSize * 28],
+      totalLength: this.cellSize
+    },
+    {
+      axisDirection: "v",
+      startCoord: [this.cellSize * 30, this.cellSize * 30],
+      totalLength: this.cellSize
+    },
+    {
+      axisDirection: "v",
+      startCoord: [this.cellSize * 30, this.cellSize * 32],
+      totalLength: this.cellSize
+    },
+    {
+      axisDirection: "v",
+      startCoord: [this.cellSize * 30, this.cellSize * 34],
+      totalLength: this.cellSize
+    }
+  ]
+  this.levelLayouts[8] = [
+    {
+      axisDirection: "v",
+      startCoord: [this.cellSize * 7, this.cellSize * 0],
+      totalLength: this.cellSize * 24
+    },
+    {
+      axisDirection: "v",
+      startCoord: [this.cellSize * 15, this.cellSize * 11],
+      totalLength: this.cellSize * 24
+    },
+    {
+      axisDirection: "v",
+      startCoord: [this.cellSize * 22, this.cellSize * 0],
+      totalLength: this.cellSize * 24
+    },
+    {
+      axisDirection: "v",
+      startCoord: [this.cellSize * 30, this.cellSize * 11],
+      totalLength: this.cellSize * 24
+    },
+    {
+      axisDirection: "v",
+      startCoord: [this.cellSize * 37, this.cellSize * 0],
+      totalLength: this.cellSize * 24
+    },
+    {
+      axisDirection: "v",
+      startCoord: [this.cellSize * 45, this.cellSize * 11],
+      totalLength: this.cellSize * 24
+    },
+    {
+      axisDirection: "v",
+      startCoord: [this.cellSize * 52, this.cellSize * 0],
+      totalLength: this.cellSize * 24
+    }
+  ]
 }
 
 
@@ -30,6 +255,7 @@ Game.prototype.initialiseNewGame = function() {
 };
 
 Game.prototype.initialiseLevel = function() {
+  console.log(this.canvas.width)
   this.gameSpeed = 230;
   this.cellSize = 20;
   this.gridWidth = this.canvas.width/this.cellSize;
@@ -124,7 +350,7 @@ Game.prototype.calculateWall = function(axis, start, length) {
       lastX = lastX + this.cellSize;
     };
   } else if(axis === "v") {
-    for (var i = 0; i < (length/this.cellSize); i++) {
+    for (var i = 1; i < (length/this.cellSize); i++) {
       arr.push([start[0], lastY + this.cellSize]);
       lastY = lastY + this.cellSize;
     };
@@ -211,19 +437,26 @@ Game.prototype.gameOver = function() {
   this.ctx.fillText("to play again", 472, 385);
   this.tickIntervalId = window.clearInterval(this.tickIntervalId)
   this.gameInPlay = false
-  this.pauseToggle = true
 }
 
 Game.prototype.levelUp = function() {
   this.gameLevel++
   this.tickIntervalId = window.clearInterval(this.tickIntervalId)
   this.drawNotificationBoard();
-  this.ctx.font = "18px PC Senior";
-  this.ctx.fillText("Level complete!", 470, 325);
-  this.ctx.fillText("Press any key", 484, 355);
-  this.ctx.fillText("to continue", 502, 385);
-  this.pauseToggle = true
-  this.gameInPlay = false
+  if(this.gameLevel === 9) {
+    this.ctx.font = "18px PC Senior";
+    this.ctx.fillText("Game complete!", 470, 325);
+    this.ctx.fillText("Press any key", 484, 355);
+    this.ctx.fillText("to play again", 502, 385);
+    this.gameInPlay = false
+  } else {
+    this.ctx.font = "18px PC Senior";
+    this.ctx.fillText("Level complete!", 470, 325);
+    this.ctx.fillText("Press any key", 484, 355);
+    this.ctx.fillText("to continue", 502, 385);
+    this.pauseToggle = true
+    this.gameInPlay = false
+  }
 }
 
 Game.prototype.drawNotificationBoard = function() {
