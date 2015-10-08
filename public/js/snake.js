@@ -58,8 +58,6 @@ Snake.prototype.eatIfPossible = function(food) {
 };
 
 Snake.prototype.cannibalism = function() {
-  console.log("here are bodyParts")
-  console.log(this.bodyParts)
   for (var i = this.bodyParts.length - 1; i > 0; i--) {
     if(this.bodyParts[0][0] === this.bodyParts[i][0] && this.bodyParts[0][1] === this.bodyParts[i][1]) {
       return true;
