@@ -2,8 +2,6 @@ function Food(cellSize) {
   this.cellSize = cellSize;
   this.width = this.cellSize;
   this.height = this.cellSize;
-  this.x = (randomX(0,59) * this.cellSize);
-  this.y = (randomY(0,34) * this.cellSize);
   this.xOffset = 5;
   this.yOffset = 16;
   this.number = 1;
@@ -26,8 +24,8 @@ Food.prototype.nextCourse = function(increaseFoodNumber, snake, walls) {
 };
 
 Food.prototype.generatePlacement = function() {
-  this.x = (randomX(0,60) * this.cellSize);
-  this.y = (randomX(0,35) * this.cellSize);
+  this.x = (randomX(0,59) * this.cellSize);
+  this.y = (randomX(0,34) * this.cellSize);
 };
 
 Food.prototype.intersectsWithWalls = function(walls) {

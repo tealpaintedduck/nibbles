@@ -265,6 +265,7 @@ Game.prototype.initialiseLevel = function() {
   this.nibbler = new Snake(this.cellSize);
   this.food = new Food(this.cellSize);
   this.walls = [[]];
+  this.food.nextCourse(false, this.nibbler, this.walls);
 };
 
 Game.prototype.start = function() {
