@@ -251,11 +251,12 @@ function Game(canvas, context) {
 Game.prototype.initialiseNewGame = function() {
   this.gameLevel = 1;
   this.tickIntervalId = 0;
+  this.lives = 5
   this.initialiseLevel();
 };
 
 Game.prototype.initialiseLevel = function() {
-  console.log(this.canvas.width)
+  console.log(this.lives)
   this.gameSpeed = 230;
   this.cellSize = 20;
   this.gridWidth = this.canvas.width/this.cellSize;
@@ -430,11 +431,20 @@ Game.prototype.pauseGame = function() {
 }
 
 Game.prototype.gameOver = function() {
+  this.lives--
   this.drawNotificationBoard();
   this.ctx.font = "20px PC Senior";
-  this.ctx.fillText("Game over!", 500, 325);
-  this.ctx.fillText("Press any key", 474, 355);
-  this.ctx.fillText("to play again", 472, 385);
+  if(this.lives > 0) {
+    this.ctx.fillText("You died!", 515, 320);
+    this.ctx.fillText("Press any key", 474, 350);
+    this.ctx.fillText("to restart", 500, 380);
+    this.ctx.fillText("level", 550, 410);
+    this.pauseToggle = true
+  } else {
+    this.ctx.fillText("Game over!", 500, 325);
+    this.ctx.fillText("Press any key", 474, 355);
+    this.ctx.fillText("to play again", 472, 385);
+  }
   this.tickIntervalId = window.clearInterval(this.tickIntervalId)
   this.gameInPlay = false
 }
