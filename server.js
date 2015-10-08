@@ -8,7 +8,7 @@ app.get('/', function(request, response){
   response.sendfile('/index.html')
 });
 
-server.listen(3000, function() {
+server.listen(process.env.PORT || 3000, function() {
   console.log("Server listening on port 3000")
 });
 
