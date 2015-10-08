@@ -18,7 +18,7 @@ function Game(canvas, context) {
   this.levelLayouts[2] = [{
     axisDirection: "h",
     startCoord: [(this.cellSize * 8), (this.cellSize * 16)],
-    totalLength: (this.cellSize * 45)
+    totalLength: (this.cellSize * 43)
   }]
   this.levelLayouts[4] = [
     {
@@ -28,7 +28,7 @@ function Game(canvas, context) {
     },
     {
       axisDirection: "v",
-      startCoord: [this.cellSize * 45, this.cellSize * 16],
+      startCoord: [this.cellSize * 45, this.cellSize * 17],
       totalLength: this.cellSize * 18
     },
     {
@@ -56,64 +56,64 @@ function Game(canvas, context) {
     {
       axisDirection: "h",
       startCoord: [this.cellSize * 17, this.cellSize * 7],
-      totalLength: this.cellSize * 27
+      totalLength: this.cellSize * 26
     },
     {
       axisDirection: "h",
-      startCoord: [this.cellSize * 17, this.cellSize * 29],
-      totalLength: this.cellSize * 27
+      startCoord: [this.cellSize * 17, this.cellSize * 28],
+      totalLength: this.cellSize * 26
     }
   ]
   this.levelLayouts[6] = [
     {
       axisDirection: "v",
       startCoord: [this.cellSize * 10, 0],
-      totalLength: this.cellSize * 13
+      totalLength: this.cellSize * 14
     },
     {
       axisDirection: "v",
       startCoord: [this.cellSize * 10, this.cellSize * 21],
-      totalLength: this.cellSize * 13
+      totalLength: this.cellSize * 14
     },
     {
       axisDirection: "v",
       startCoord: [this.cellSize * 20, 0],
-      totalLength: this.cellSize * 13
+      totalLength: this.cellSize * 14
     },
     {
       axisDirection: "v",
       startCoord: [this.cellSize * 20, this.cellSize * 21],
-      totalLength: this.cellSize * 13
+      totalLength: this.cellSize * 14
     },
     {
       axisDirection: "v",
       startCoord: [this.cellSize * 30, 0],
-      totalLength: this.cellSize * 13
+      totalLength: this.cellSize * 14
     },
     {
       axisDirection: "v",
       startCoord: [this.cellSize * 30, this.cellSize * 21],
-      totalLength: this.cellSize * 13
+      totalLength: this.cellSize * 14
     },
     {
       axisDirection: "v",
       startCoord: [this.cellSize * 40, 0],
-      totalLength: this.cellSize * 13
+      totalLength: this.cellSize * 14
     },
     {
       axisDirection: "v",
       startCoord: [this.cellSize * 40, this.cellSize * 21],
-      totalLength: this.cellSize * 13
+      totalLength: this.cellSize * 14
     },
     {
       axisDirection: "v",
       startCoord: [this.cellSize * 50, 0],
-      totalLength: this.cellSize * 13
+      totalLength: this.cellSize * 14
     },
     {
       axisDirection: "v",
       startCoord: [this.cellSize * 50, this.cellSize * 21],
-      totalLength: this.cellSize * 13
+      totalLength: this.cellSize * 14
     }
   ]
   this.levelLayouts[7] = [
@@ -256,7 +256,6 @@ Game.prototype.initialiseNewGame = function() {
 };
 
 Game.prototype.initialiseLevel = function() {
-  console.log(this.lives)
   this.gameSpeed = 230;
   this.cellSize = 20;
   this.gridWidth = this.canvas.width/this.cellSize;
@@ -326,20 +325,6 @@ Game.prototype.levelUpIfNibblerEats = function() {
     this.levelUp();
   }
 };
-
-function startGame() {
-  level = {
-    draw: function(level) {
-      switch(level) {
-        case 2:
-        drawLevelTwo();
-        break;
-        case 3:
-        drawLevelThree();
-      }
-    }
-  }
-}
 
 Game.prototype.calculateWall = function(axis, start, length) {
   arr = [start]

@@ -2,8 +2,8 @@ function Food(cellSize) {
   this.cellSize = cellSize;
   this.width = this.cellSize;
   this.height = this.cellSize;
-  this.x = (randomX(0,60) * this.cellSize);
-  this.y = (randomY(0,35) * this.cellSize);
+  this.x = (randomX(0,59) * this.cellSize);
+  this.y = (randomY(0,34) * this.cellSize);
   this.xOffset = 5;
   this.yOffset = 16;
   this.number = 1;
@@ -18,21 +18,32 @@ Food.prototype.draw = function(ctx) {
 
 Food.prototype.nextCourse = function(increaseFoodNumber, snake, walls) {
   if(increaseFoodNumber) {
-    this.number++
+    this.number++;
   }
+  do {
+    this.generatePlacement();
+  } while(this.intersectsWithSnake(snake) || this.intersectsWithWalls(walls))
+};
+
+Food.prototype.generatePlacement = function() {
   this.x = (randomX(0,60) * this.cellSize);
   this.y = (randomX(0,35) * this.cellSize);
-  for (var i = snake.bodyParts.length - 1; i >= 0; i--) {
-    if(snake.bodyParts[i][0] === this.x && snake.bodyParts[i][1] === this.y) {
-      this.nextCourse(false, snake, walls);
-    }
-  };
+};
+
+Food.prototype.intersectsWithWalls = function(walls) {
   for (var i = walls.length - 1; i >= 0; i--) {
     if(walls[i][0] === this.x && walls[i][1] === this.y) {
-      this.nextCourse(false, snake, walls);
+      return true
     }
-  };
-}
+  }
+};
+Food.prototype.intersectsWithSnake = function(snake) {
+  for (var i = snake.bodyParts.length - 1; i >= 0; i--) {
+    if(snake.bodyParts[i][0] === this.x && snake.bodyParts[i][1] === this.y) {
+      return true
+    }
+  }
+};
 
 function randomX(min,max) {
   return Math.floor(Math.random()*(max-min+1)+min);
