@@ -282,6 +282,7 @@ Game.prototype.tickIfGameInPlay = function() {
 };
 
 Game.prototype.tick = function() {
+  this.moved = false
   this.updatePositions();
   this.checkForGameOver();
   this.speedUpIfNibblerEats();
@@ -368,36 +369,40 @@ function createGameGrid() {
 
 
 Game.prototype.interpretKeyboard = function(e) {
-  if(this.gameInPlay){
+  if(this.gameInPlay && this.moved === false){
     switch(e.keyCode) {
       case 40:
       if(this.nibbler.directionOfTravel !== "N") {
         this.nibbler.directionOfTravel = "S";
+        this.moved = true
       }
       break;
       case 37:
       if(this.nibbler.directionOfTravel !== "E") {
         this.nibbler.directionOfTravel = "W";
+        this.moved = true
       }
       break;
       case 38:
       if(this.nibbler.directionOfTravel !== "S") {
         this.nibbler.directionOfTravel = "N";
+        this.moved = true
       }
       break;
       case 39:
       if(this.nibbler.directionOfTravel !== "W") {
         this.nibbler.directionOfTravel = "E";
+        this.moved = true
       }
       break;
       case 32:
       this.pauseGame();
       break;
     }
-  } else if(!this.pauseToggle) {
+  } else if(!this.pauseToggle && !this.gameInPlay) {
       this.initialiseNewGame();
       this.start();
-  } else if(this.pauseToggle) {
+  } else if(this.pauseToggle && !this.gameInPlay) {
       this.initialiseLevel();
       this.start();
   }
