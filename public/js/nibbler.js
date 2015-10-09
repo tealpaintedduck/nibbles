@@ -1,6 +1,8 @@
-function Game(canvas, context) {
+function Game(canvas, context, scoreBoard, scoreBoardCtx) {
   this.canvas = canvas;
   this.ctx =  context;
+  this.scoreBoard = scoreBoard;
+  this.scoreBoardCtx = scoreBoardCtx;
   this.initialiseNewGame();
   this.levelLayouts = []
   this.levelLayouts[3] = [
@@ -265,7 +267,7 @@ Game.prototype.initialiseLevel = function() {
   this.nibbler = new Snake(this.cellSize);
   this.food = new Food(this.cellSize);
   this.walls = [[]];
-  this.food.nextCourse(false, this.nibbler, this.walls);
+  this.food.nextCourse(this.nibbler, this.walls);
 };
 
 Game.prototype.start = function() {
@@ -304,15 +306,24 @@ Game.prototype.checkForGameOver = function() {
 Game.prototype.speedUpIfNibblerEats = function() {
   if(this.nibbler.eatIfPossible(this.food)) {
     this.speedUpGame();
-    this.food.nextCourse(true, this.nibbler, this.walls);
+    this.food.nextCourse(this.nibbler, this.walls);
   }
 };
 
 Game.prototype.drawAll = function() {
+  this.drawScoreboard();
   this.drawBackground();
   this.drawLevel();
   this.nibbler.draw(this.ctx);
   this.food.draw(this.ctx);
+};
+
+Game.prototype.drawScoreboard = function() {
+  this.scoreBoardCtx.fillStyle = "rgb(200,0,0)"
+  this.scoreBoardCtx.fillRect(0,0,this.scoreBoard.width, this.scoreBoard.height);
+  this.scoreBoardCtx.font = "20px PC Senior";
+  this.scoreBoardCtx.fillStyle = "rgb(255,255,255)"
+  this.scoreBoardCtx.fillText("Lives: " + this.lives.toString(), 1000, 35)
 };
 
 Game.prototype.drawBackground = function() {
@@ -486,8 +497,10 @@ Game.prototype.getWalls = function() {
 
 window.onload = function() {
   var canvas = document.getElementById('gameBoard');
+  var scoreBoard = document.getElementById('scoreBoard');
+  var scoreBoardCtx = scoreBoard.getContext("2d");
   var ctx = canvas.getContext("2d");
-  var game = new Game(canvas, ctx);
+  var game = new Game(canvas, ctx, scoreBoard, scoreBoardCtx);
   window.addEventListener("keydown", game.interpretKeyboard.bind(game), false);
   game.start();
 }

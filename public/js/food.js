@@ -4,7 +4,7 @@ function Food(cellSize) {
   this.height = this.cellSize;
   this.xOffset = 5;
   this.yOffset = 16;
-  this.number = 1;
+  this.number = 0;
 }
 
 
@@ -14,10 +14,8 @@ Food.prototype.draw = function(ctx) {
   ctx.fillText(this.number.toString(), this.x + this.xOffset, this.y + this.yOffset);
 };
 
-Food.prototype.nextCourse = function(increaseFoodNumber, snake, walls) {
-  if(increaseFoodNumber) {
-    this.number++;
-  }
+Food.prototype.nextCourse = function(snake, walls) {
+  this.number++;
   do {
     this.generatePlacement();
   } while(this.intersectsWithSnake(snake) || this.intersectsWithWalls(walls))
