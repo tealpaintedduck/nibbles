@@ -266,7 +266,7 @@ Game.prototype.initialiseLevel = function() {
   this.pauseToggle = false;
   this.nibbler = new Snake(this.cellSize);
   this.food = new Food(this.cellSize);
-  this.walls = [[]];
+  this.walls = this.getWalls();
   this.food.nextCourse(this.nibbler, this.walls);
 };
 
@@ -322,9 +322,12 @@ Game.prototype.drawAll = function() {
 Game.prototype.drawScoreboard = function() {
   this.scoreBoardCtx.fillStyle = "rgb(200,0,0)"
   this.scoreBoardCtx.fillRect(0,0,this.scoreBoard.width, this.scoreBoard.height);
-  this.scoreBoardCtx.font = "20px PC Senior";
+  this.scoreBoardCtx.font = "18px PC Senior";
   this.scoreBoardCtx.fillStyle = "rgb(255,255,255)"
-  this.scoreBoardCtx.fillText("Lives: " + this.lives.toString(), 1000, 35)
+  this.scoreBoardCtx.fillText("Lives: " + this.lives.toString(), 1000, 20)
+  this.scoreBoardCtx.fillText("Level: " + this.gameLevel.toString(), 800, 20)
+  this.scoreBoardCtx.fillText("NIBBLR", 20, 20)
+
 };
 
 Game.prototype.drawBackground = function() {
@@ -410,9 +413,9 @@ Game.prototype.interpretKeyboard = function(e) {
 
 Game.prototype.speedUpGame = function() {
   if(this.gameSpeed > 65) {
-    this.gameSpeed -= 35
-    this.tickIntervalId = window.clearInterval(this.tickIntervalId)
-    this.tickIntervalId = window.setInterval(this.tickIfGameInPlay.bind(this), this.gameSpeed)
+    this.gameSpeed -= 35;
+    this.tickIntervalId = window.clearInterval(this.tickIntervalId);
+    this.tickIntervalId = window.setInterval(this.tickIfGameInPlay.bind(this), this.gameSpeed);
   }
 }
 
@@ -424,16 +427,16 @@ Game.prototype.pauseGame = function() {
     this.ctx.fillText("Press space", 490, 360);
     this.ctx.fillText("to continue", 490, 390);
 
-    this.tickIntervalId = window.clearInterval(this.tickIntervalId)
-    this.pauseToggle = true
+    this.tickIntervalId = window.clearInterval(this.tickIntervalId);
+    this.pauseToggle = true;
   } else if(this.pauseToggle && this.gameInPlay === true) {
-    this.tickIntervalId = window.setInterval(this.tickIfGameInPlay.bind(this), this.gameSpeed)
-    this.pauseToggle = false
+    this.tickIntervalId = window.setInterval(this.tickIfGameInPlay.bind(this), this.gameSpeed);
+    this.pauseToggle = false;
   }
 }
 
 Game.prototype.gameOver = function() {
-  this.lives--
+  this.lives--;
   this.drawNotificationBoard();
   this.ctx.font = "20px PC Senior";
   if(this.lives > 0) {
@@ -447,27 +450,27 @@ Game.prototype.gameOver = function() {
     this.ctx.fillText("Press any key", 474, 355);
     this.ctx.fillText("to play again", 472, 385);
   }
-  this.tickIntervalId = window.clearInterval(this.tickIntervalId)
-  this.gameInPlay = false
+  this.tickIntervalId = window.clearInterval(this.tickIntervalId);
+  this.gameInPlay = false;
 }
 
 Game.prototype.levelUp = function() {
-  this.gameLevel++
-  this.tickIntervalId = window.clearInterval(this.tickIntervalId)
+  this.gameLevel++;
+  this.tickIntervalId = window.clearInterval(this.tickIntervalId);
   this.drawNotificationBoard();
   if(this.gameLevel === 9) {
     this.ctx.font = "18px PC Senior";
     this.ctx.fillText("Game complete!", 470, 325);
     this.ctx.fillText("Press any key", 484, 355);
     this.ctx.fillText("to play again", 502, 385);
-    this.gameInPlay = false
+    this.gameInPlay = false;
   } else {
     this.ctx.font = "18px PC Senior";
     this.ctx.fillText("Level complete!", 470, 325);
     this.ctx.fillText("Press any key", 484, 355);
     this.ctx.fillText("to continue", 502, 385);
-    this.pauseToggle = true
-    this.gameInPlay = false
+    this.pauseToggle = true;
+    this.gameInPlay = false;
   }
 }
 
@@ -484,18 +487,22 @@ Game.prototype.drawLevel = function() {
     var walls = this.getWalls();
     this.ctx.fillStyle = "rgb(200,0,0)";
     for (var i = walls.length - 1; i >= 0; i--) {
-    this.ctx.fillRect(walls[i][0], walls[i][1], this.cellSize, this.cellSize)
+     this.ctx.fillRect(walls[i][0], walls[i][1], this.cellSize, this.cellSize);
     };
   }
 };
 
 Game.prototype.getWalls = function() {
-  var levelWalls = this.levelLayouts[this.gameLevel]
-  this.walls = []
-  for (var i = levelWalls.length - 1; i >= 0; i--) {
-    wall = this.calculateWall(levelWalls[i].axisDirection, levelWalls[i].startCoord, levelWalls[i].totalLength);
-    this.walls = this.walls.concat(wall)
-  };
+  if(this.gameLevel > 1) {
+    var levelWalls = this.levelLayouts[this.gameLevel]
+    this.walls = []
+    for (var i = levelWalls.length - 1; i >= 0; i--) {
+      wall = this.calculateWall(levelWalls[i].axisDirection, levelWalls[i].startCoord, levelWalls[i].totalLength);
+      this.walls = this.walls.concat(wall)
+    };
+  } else {
+    this.walls = [[]]
+  }
   return this.walls
 };
 
